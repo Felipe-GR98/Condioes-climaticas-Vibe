@@ -20,13 +20,13 @@ Para rodar o projeto localmente no seu **VS Code**:
    git clone [https://github.com/Felipe-GR98/Condicoes-climaticas-Vibe.git](https://github.com/Felipe-GR98/Condicoes-climaticas-Vibe.git)
 Navegue até a pasta do projeto:
 
-```bash
-cd Condicoes-climaticas-Vibe
+bash
+``cd Condicoes-climaticas-Vibe``
 
 Abra no VS Code:
 
-```bash
-code .
+bash
+``code .``
 Utilize a extensão Live Server para abrir o arquivo index.html no navegador.
 
 2. 📖 Guia de Uso
@@ -36,20 +36,21 @@ Clique no botão "Buscar".
 
 Veja os dados meteorológicos e a mudança dinâmica na interface.
 
-Exemplo de Resultado
-Cidade: Recife
+Exemplo de Resultado: 
 
-Status: Céu Limpo ☀️
+- Cidade: Recife
 
-Temperatura: 27.2°C
+- Status: Céu Limpo ☀️
 
-Vento: 10 km/h
+- Temperatura: 27.2°C
+
+- Vento: 10 km/h
 
 3. 🧪 Testes
 O projeto utiliza o framework Jest para garantir a integridade das funções.
 Para rodar os testes, execute:
 
-npm test
+``npm test``
 
 4. 💳 Créditos e Referências
 API de Dados: Open-Meteo
