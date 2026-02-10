@@ -38,7 +38,8 @@ if (dadosClima) {
         <p>Tempo: ${textoClima.texto}</p> 
         <h2 class="temp">${dadosClima.temperature}°C</h2>
         <p>Vento: ${dadosClima.windspeed} km/h</p>
-    `;
+    `
+    salvarNoHistorico(cidade);
 }else {
         displayResultado.innerHTML = "Erro ao encontrar cidade.";
     }
@@ -57,4 +58,40 @@ function atualizarFundo(temp) {
         // Fundo frio (Degradê Roxo/Azul Escuro)
         corpo.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
     }
+}
+
+/**
+ * Guarda o nome da cidade no LocalStorage para manter um histórico.
+ * @param {string} cidade - Nome da cidade a guardar.
+ */
+function salvarNoHistorico(cidade) {
+    let cidades = JSON.parse(localStorage.getItem('historicoCidades')) || [];
+    
+    // Evita duplicados e mantém apenas as últimas 5 buscas
+    if (!cidades.includes(cidade)) {
+        cidades.unshift(cidade);
+        cidades = cidades.slice(0, 5);
+        localStorage.setItem('historicoCidades', JSON.stringify(cidades));
+        renderizarHistorico();
+    }
+}
+
+/**
+ * Cria e exibe botões para as cidades pesquisadas recentemente.
+ */
+function renderizarHistorico() {
+    const historicoDiv = document.getElementById('historico');
+    const cidades = JSON.parse(localStorage.getItem('historicoCidades')) || [];
+    
+    historicoDiv.innerHTML = cidades.map(cidade => 
+        `<button class="btn-historico">${cidade}</button>`
+    ).join('');
+
+    // Adiciona evento de clique aos novos botões do histórico
+    document.querySelectorAll('.btn-historico').forEach(btn => {
+        btn.addEventListener('click', () => {
+            inputCidade.value = btn.innerText;
+            botao.click();
+        });
+    });
 }
